@@ -1,0 +1,12 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.item-container {
+	display: flex;
+}
+
+.item {
+	margin: 2em;
+}
