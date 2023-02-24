@@ -3,7 +3,10 @@ import React, { useContext, useState } from 'react';
 import { ContextProvider } from '../context/context';
 
 const Cart = () => {
-	const { numberCart, incrementQuant } = useContext(ContextProvider);
+	const { numberCart, incrementQuant, decrementQuant, removeItem } =
+		useContext(ContextProvider);
+
+	console.log(numberCart);
 
 	return (
 		<div>
@@ -13,10 +16,11 @@ const Cart = () => {
 					<div key={item.id}>
 						<p>{item.name}</p>
 						<div style={{ display: 'flex' }}>
-							<button>-</button>
-							<p>{0}</p>
+							<button onClick={() => decrementQuant(item.id)}>-</button>
+							<p>{item.quantity}</p>
 							<button onClick={() => incrementQuant(item.id)}>+</button>
 						</div>
+						<button onClick={() => removeItem(item.id)}>Remove</button>
 					</div>
 				);
 			})}

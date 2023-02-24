@@ -23,15 +23,38 @@ export const ContextFunction = ({ children }) => {
 	const incrementQuant = (id) => {
 		numberCart.map((item) => {
 			if (item.id === id) {
-				console.log(item);
 				setItemQty(item.quantity++);
 			}
 		});
 	};
 
+	const decrementQuant = (id) => {
+		numberCart.map((item) => {
+			if (item.id === id) {
+				if (item.quantity === 1) {
+					return 1;
+				} else {
+					setItemQty(item.quantity--);
+				}
+			}
+		});
+	};
+
+	const removeItem = (id) => {
+		const filterItem = numberCart.filter((item) => item.id !== id);
+
+		setNumberCart(filterItem);
+	};
+
 	return (
 		<ContextProvider.Provider
-			value={{ numberCart, addItemToCart, incrementQuant }}
+			value={{
+				numberCart,
+				addItemToCart,
+				incrementQuant,
+				decrementQuant,
+				removeItem,
+			}}
 		>
 			{children}
 		</ContextProvider.Provider>
