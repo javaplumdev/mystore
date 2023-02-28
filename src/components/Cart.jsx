@@ -6,8 +6,6 @@ const Cart = () => {
 	const { numberCart, incrementQuant, decrementQuant, removeItem } =
 		useContext(ContextProvider);
 
-	console.log(numberCart);
-
 	return (
 		<div>
 			<p>Your cart</p>
@@ -15,6 +13,8 @@ const Cart = () => {
 				return (
 					<div key={item.id}>
 						<p>{item.name}</p>
+						<p>{item.price}</p>
+						<p>{item.totalPrice}</p>
 						<div style={{ display: 'flex' }}>
 							<button onClick={() => decrementQuant(item.id)}>-</button>
 							<p>{item.quantity}</p>

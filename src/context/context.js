@@ -1,10 +1,11 @@
 import { createContext, useState } from 'react';
-
+import { myStore } from '../data/data';
 export const ContextProvider = createContext();
 
 export const ContextFunction = ({ children }) => {
 	const [numberCart, setNumberCart] = useState([]);
 	const [itemQty, setItemQty] = useState(0);
+	const [grandTotal, setGrandTotal] = useState(0);
 
 	const addItemToCart = (id, name) => {
 		const itemExist = numberCart.find((item) => item.id === id);
@@ -12,9 +13,11 @@ export const ContextFunction = ({ children }) => {
 		if (itemExist) {
 			console.log('Item already added ');
 		} else {
+			const item = myStore.find((item) => item.id === id);
+
 			setNumberCart((prevState) => [
 				...prevState,
-				{ id: id, name: name, quantity: 1 },
+				{ id: id, name: name, quantity: 1, price: item.price },
 			]);
 			console.log('Item added');
 		}
@@ -24,8 +27,12 @@ export const ContextFunction = ({ children }) => {
 		numberCart.map((item) => {
 			if (item.id === id) {
 				setItemQty(item.quantity++);
+
+				item.totalPrice = item.price * item.quantity;
 			}
 		});
+
+		console.log(numberCart);
 	};
 
 	const decrementQuant = (id) => {

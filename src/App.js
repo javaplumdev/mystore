@@ -8,12 +8,12 @@ function App() {
 		<ContextFunction>
 			<div className="App">
 				<Router>
+					<Navbar />
 					<Routes>
 						<Route
 							path="/"
 							element={
 								<>
-									<Navbar />
 									<Item />
 								</>
 							}

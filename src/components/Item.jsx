@@ -11,6 +11,7 @@ const Item = () => {
 				return (
 					<div key={item.id} className="item">
 						<p>{item.name}</p>
+						<p>{item.price}</p>
 						<button onClick={() => addItemToCart(item.id, item.name)}>
 							Add to cart
 						</button>
