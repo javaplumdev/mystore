@@ -3,12 +3,13 @@ import React, { useContext, useState } from 'react';
 import { ContextProvider } from '../context/context';
 
 const Cart = () => {
-	const { numberCart, incrementQuant, decrementQuant, removeItem } =
+	const { numberCart, incrementQuant, decrementQuant, removeItem, grandTotal } =
 		useContext(ContextProvider);
 
 	return (
 		<div>
 			<p>Your cart</p>
+			<p>{grandTotal}</p>
 			{numberCart.map((item) => {
 				return (
 					<div key={item.id}>

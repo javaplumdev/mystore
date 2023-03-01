@@ -17,10 +17,31 @@ export const ContextFunction = ({ children }) => {
 
 			setNumberCart((prevState) => [
 				...prevState,
-				{ id: id, name: name, quantity: 1, price: item.price },
+				{
+					id: id,
+					name: name,
+					quantity: 1,
+					price: item.price,
+					totalPrice: item.totalPrice,
+				},
 			]);
+
+			numberCart.map((item) => {
+				if (item.id === id) {
+					setItemQty(item.quantity++);
+
+					item.totalPrice = item.price * item.quantity;
+				}
+			});
+
 			console.log('Item added');
 		}
+
+		var total = numberCart.reduce(function (prev, cur) {
+			return prev + cur.totalPrice;
+		}, 0);
+
+		setGrandTotal(total);
 	};
 
 	const incrementQuant = (id) => {
@@ -32,7 +53,11 @@ export const ContextFunction = ({ children }) => {
 			}
 		});
 
-		console.log(numberCart);
+		var total = numberCart.reduce(function (prev, cur) {
+			return prev + cur.totalPrice;
+		}, 0);
+
+		setGrandTotal(total);
 	};
 
 	const decrementQuant = (id) => {
@@ -61,6 +86,7 @@ export const ContextFunction = ({ children }) => {
 				incrementQuant,
 				decrementQuant,
 				removeItem,
+				grandTotal,
 			}}
 		>
 			{children}
