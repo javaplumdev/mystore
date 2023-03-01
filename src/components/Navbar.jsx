@@ -7,7 +7,9 @@ const Navbar = () => {
 
 	return (
 		<div className="nav">
-			<p>Navbar</p>
+			<Link to="/">
+				<p>Navbar</p>
+			</Link>
 			<Link to="/cart">My Cart: {numberCart.length}</Link>
 		</div>
 	);

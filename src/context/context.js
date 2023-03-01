@@ -22,7 +22,7 @@ export const ContextFunction = ({ children }) => {
 					name: name,
 					quantity: 1,
 					price: item.price,
-					totalPrice: item.totalPrice,
+					totalPrice: item.price,
 				},
 			]);
 
